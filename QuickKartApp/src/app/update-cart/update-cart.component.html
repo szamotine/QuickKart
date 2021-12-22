@@ -1,0 +1,55 @@
+<app-customer-layout></app-customer-layout>
+<div class="myContent">
+  <div class="container">
+    <form #updateCartForm="ngForm" (ngSubmit)="updateCart(prodQuantity.value)">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <h4 style="text-align:center">Update Cart</h4>
+          <h6 style="text-align:right; color:dimgray; font-size:small">All fields are mandatory</h6>
+          <div class="form-group">
+            <div class="col" style="text-align:left">
+              <label>Product ID</label>
+            </div>
+            <div class="col; input-group">
+              <input type="text" name="prodId" [ngModel]="productId" class="form-control qkinput" readonly />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class=" col" style="text-align:left">
+              <label>Product Name</label>
+            </div>
+            <div class="col; input-group">
+              <input type="text" name="prodName" [ngModel]="productName" class="form-control qkinput" readonly/>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col" style="text-align:left">
+              <label>Quantity</label>
+            </div>
+            <div class="col; input-group">
+              <input type="number" name="prodQuantity" #prodQuantity="ngModel" [ngModel]="quantity" class="form-control qkinput" min="1" max="{{quantityAvailable}}" required ngModel /><br />
+              <div *ngIf="prodQuantity.errors && (prodQuantity.dirty || prodQuantity.touched)" class="text-danger-validation">
+                <div [hidden]="!prodQuantity.errors['required']">
+                  <br />
+                  Please enter the quantity.
+                </div>
+              </div>
+              <div *ngIf=" prodQuantity.value > quantityAvailable && (prodQuantity.dirty || prodQuantity.touched) " class="text-danger-validation">
+                <div class="row">
+                  <p><br />&nbsp;&nbsp;Max quantity is {{quantityAvailable}}</p>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+          <div class="form-group" style="text-align:left">
+            <button type="submit" [disabled]="!updateCartForm.valid" class="btn">Update</button>
+          </div>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+    </form>
+  </div>
+</div>

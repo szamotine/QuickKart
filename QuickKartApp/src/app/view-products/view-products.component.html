@@ -1,0 +1,137 @@
+<div *ngIf="commonLayout">
+  <app-common-layout></app-common-layout>
+</div>
+
+<div *ngIf="customerLayout">
+  <app-customer-layout></app-customer-layout>
+</div>
+
+<div class="myContent">
+  <div style="text-align:center;">
+    <h1>View Products</h1>
+    <br />
+    <br />
+
+    <div class="row">
+      <div class="col-md-5" style="text-align:right;">
+        <label>Search :</label>
+      </div>
+
+      <div class="col-md-3">
+        <input type="text" placeholder="Product Name" (input)="searchProduct(productName.value)" class="form-control" #productName />
+      </div>
+
+      <div class="col-md-2" style="text-align:right;">
+        <label>Filter products:</label>
+      </div>
+
+      <div class="col-md-2">
+        <select class=" form-control" #categorydrop (change)="searchProductByCategory(categorydrop.value)">
+          <option value="0">All Categories</option>
+          <option *ngFor="let category of categories" value="{{category.categoryId}}">{{category.categoryName}}</option>
+        </select>
+      </div>
+    </div>
+    <br />
+
+    <div class=" table-responsive">
+      <table class="table" style=" border: 5px solid rgba(220, 230, 242,1);" *ngIf="filteredProducts && filteredProducts.length">
+        <tr style="background-color:rgba(220,230,242,1); font-size:12pt">
+          <th style=" text-align: center">Product Id</th>
+          <th style=" text-align: center">Product Name</th>
+          <th style=" text-align: center">Category Id</th>
+          <th style=" text-align: center">Price</th>
+          <th style=" text-align: center">Quantity Available</th>
+          <th style=" text-align: center">Action</th>
+        </tr>
+        <tr *ngFor="let product of filteredProducts" style="background-color:white;">
+          <td>{{product.productId}}</td>
+          <td>{{product.productName}}</td>
+          <td>{{product.categoryId}}</td>
+          <td>{{product.price}}</td>
+          <td>{{product.quantityAvailable}}</td>
+          <td><img title="Add to cart" [src]=imageSrc (click)="addToCart(product)"/></td>
+        </tr>
+      </table>
+    </div>
+
+    <div *ngIf="showMsgDiv" style="">
+      <h4 class="jumbotron" style="text-align:center;">No Products Available</h4>
+    </div>
+
+  </div>
+</div>
+
+
+<!--
+  <div style="text-align:center">
+  <h1> View Products</h1>
+  <br />
+
+
+  <div class="row">
+
+    <div class="col-md-5"></div>
+    <div class="col-md-3">
+      <label> Search:</label>
+      <input type="text" name="Search:" #categorysearch (change)="searchProductByName(categorysearch.value)" />
+    </div>
+
+    <div class="col-md-3">
+      <label style="text-align:left">Filter products:</label>
+
+      <select class="form-control" #categorydrop
+              (change)="searchProductByCategory(categorydrop.value)">
+        <option style="text-align:center" value="0"> All Categories</option>
+        <option *ngFor="let category of categories" value={{category.categoryId}}>{{category.categoryName}}</option>
+      </select>
+    </div>
+
+  </div>
+
+      <div class="col-md-1" style="text-align:center">
+    <label>Search:</label>
+    <div class="col-md-6">
+      <input type="text" [(ngModel)]=" categories" />
+    </div>
+
+  </div>
+
+
+  <div class="col-md-2" style="text-align:right">
+    <label>Filter products:</label>
+    <div class="col-md-2">
+      <select class="form-control" #categorydrop
+              (change)="searchProductByCategory(categorydrop.value)">
+        <option value="0"> All Categories</option>
+        <option *ngFor="let category of categories" value={{category.categoryId}}>{{category.categoryName}}</option>
+      </select>
+    </div>
+  </div>
+
+<div class=" table-responsive">
+  <table class="table" style=" border: 5px solid rgba(220, 230, 242,1);" *ngIf="filteredProducts && filteredProducts.length">
+    <tr style="background-color:rgba(220,230,242,1); font-size:12pt">
+      <th style=" text-align: center">Product Id</th>
+      <th style=" text-align: center">Product Name</th>
+      <th style=" text-align: center">Category Id</th>
+      <th style=" text-align: center">Price</th>
+      <th style=" text-align: center">Quantity Available</th>
+      <th style=" text-align: center">Action</th>
+    </tr>
+    <tr *ngFor="let product of filteredProducts" style="background-color:white; text-align:center; font-size:12pt">
+      <td>{{product.productId}}</td>
+      <td>{{product.productName}}</td>
+      <td>{{product.categoryId}}</td>
+      <td>{{product.price}}</td>
+      <td>{{product.quantityAvailable}}</td>
+      <td><img title="Add to cart" [src]=imageSrc /></td>
+    </tr>
+  </table>
+</div>
+<div *ngIf="showMsgDiv" style="">
+  <h4 class="jumbotron" style="text-align:center;">No Products Available</h4>
+</div>
+</div>
+
+-->

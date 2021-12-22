@@ -1,0 +1,55 @@
+<div *ngIf="customerLayout">
+  <app-customer-layout></app-customer-layout>
+</div>
+
+<div *ngIf="commonLayout">
+  <app-common-layout></app-common-layout>
+</div>
+
+
+
+<div class="myContent">
+  <div style="text-align:center;">
+    <h1>View Cart Details</h1>
+    <br />
+    <br />
+
+    <div class="table-responsive">
+      <table class="table" style=" border: 5px solid rgba(220, 230, 242,1);" *ngIf="filteredCartProducts && filteredCartProducts.length">
+        <tr>
+          <th style="text-align: center;">Product Name</th>
+          <th style="text-align: center;">Price</th>
+          <th style="text-align: center;">Quantity</th>
+          <th style="text-align: center;">Total Amount</th>
+          
+        </tr>
+
+        <tr *ngFor="let cartItem of filteredCartProducts" style="background-color:white;">
+          <td>{{cartItem.productName}}</td>
+          <td >{{cartItem.price}}</td>
+          <td>{{cartItem.quantity}}</td>
+          {{updateTotalAmount()}}
+          <td>{{cartItem.totalAmount}}</td>
+          <td style="text-align:center">
+            <button title="Update Quanity" (click)="updateCart(cartItem)" class="btn">Update Quantity</button>
+          </td>
+          <td><img title="Remove from cart" [src]=imageSrc (click)="removeProductFromCart(cartItem)" /></td>
+
+        </tr>
+
+
+      </table>
+    </div>
+
+    <div *ngIf="showMsgDiv" style="">
+      <h4 class="jumbotron" style="text-align:center;">No Cart Details Available</h4>
+      
+    </div>
+
+
+  </div>
+</div>
+
+
+
+

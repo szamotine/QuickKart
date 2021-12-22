@@ -1,0 +1,114 @@
+<app-common-layout></app-common-layout>
+
+<div class="container">
+  <h1>Registration Form</h1>
+
+  <form [formGroup]="registerForm" (ngSubmit)="SubmitForm(registerForm)">
+
+    <div class="row">
+      <div class="col-md-4"></div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>EmailID</label>
+          <br />
+          <input type="text" class="form-control" formControlName="emailId" />
+          <p *ngIf="registerForm.controls['emailId'].errors?.['required'] && registerForm.controls['emailId'].touched" class="alert alert-danger" style="color:red;">This field is required </p>
+          <p *ngIf="registerForm.controls['emailId'].errors?.['minlength'] && registerForm.controls['emailId'].touched" class="alert alert-danger" style="color:red;">Incorrect Format of email ID</p>
+        </div>
+      </div>
+
+      
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-4"></div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" class="form-control" formControlName="password" />
+          <p *ngIf="registerForm.controls['password'].errors?.['required'] && registerForm.controls['password'].touched" class="alert alert-danger" style="color:red"> This field is required</p>
+        </div>
+      </div>
+
+      <div class="col-md-4"></div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-5"></div>
+      <div class="col-md-2">
+        <div class=" form-group">
+          <label style="font-size: 20px; font:bold;"> Gender </label>
+
+        </div>
+      </div>
+
+      </div>
+
+    <div class="row">
+      <div class="col-md-5"></div>
+      <div class="col-md-1">
+        <div class=" form-group">
+          <input type="radio" formControlName="gender" name="gender" value="M" />
+          <label>Male</label>
+
+
+
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div class="form-group">
+          <input type="radio" formControlName="gender" name="gender" value="F" />
+          <label>Female</label>
+        </div>
+      </div>
+      <p *ngIf="registerForm.controls['gender'].invalid && registerForm.controls['gender'].touched" class="alert alert-danger">
+        Gender Required
+      </p>
+
+    </div>
+
+
+
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <div class=" form-group">
+            <label><br />Date of Birth</label>
+            <input type="date" class="form-control" formControlName="dateOfBirth" placeholder="dd-mmm-yyyy" />
+            <p *ngIf="registerForm.controls['dateOfBirth'].errors?.['dateError'] && registerForm.controls['dateOfBirth'].touched" class="alert alert-danger" style="font-size:25px; color:red">
+              {{registerForm.controls['dateOfBirth'].errors?.['dateError'].message}}
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label><br />Address</label>
+          </div>
+          <input type="text" class="form-control" formControlName="address" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <br />
+          <button type="submit">Register User</button>
+        </div>
+      </div>
+
+</form>
+  <div style="font-size:30px; color: green; font: bold">
+    <!--
+
+  -->
+    {{msg}}
+  </div>
+</div>

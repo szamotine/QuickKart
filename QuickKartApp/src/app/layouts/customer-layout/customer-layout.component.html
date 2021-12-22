@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">QuickKartApp</a>
+  <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a routerLink="/viewProducts" class="nav-link" href="#">View Products</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/viewCart" class="nav-link" href="#">View Cart</a>
+      <li class="nav-item">
+        <a routerLink="/viewPurchases" class="nav-link" href="#">View Purchases</a>
+      </li>
+
+      <li class="nav-item">
+        <a routerLink="/pipe" class="nav-link" href="#">Pipe</a>
+      </li>
+
+      <li class="nav-item">
+        <a routerLink="/feedback" class="nav-link" href="#">Feedback</a>
+      </li>
+
+    </ul>
+  </div>
+  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a (click)="logOut()" class="nav-link" href="#">Logout</a>
+      </li>
+      </ul>   
+  </div>
+</nav>

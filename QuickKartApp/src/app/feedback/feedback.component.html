@@ -1,0 +1,76 @@
+<style>
+  label{font-size:25px; font:Ariel,bold}
+</style>
+
+<div class="container">
+  <h1>Feedback Form</h1>
+  <h6>If you have a suggestion or any feedback for us, we'd love to hear it</h6>
+
+  <form [formGroup]="feedbackForm" (ngSubmit)="SubmitForm(feedbackForm)">
+
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" formControlName="name" placeholder="Write your name" />
+          <p *ngIf="feedbackForm.controls['name'].errors?.['required'] && feedbackForm.controls['name'].touched" class="alert alert-danger">This field is required</p>
+
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="text" class="form-control" formControlName="email" placeholder="Write your email" />
+          <p *ngIf="feedbackForm.controls['email'].errors?.['required'] && feedbackForm.controls['email'].touched" class="alert alert-danger">This field is required</p>
+          <p *ngIf="feedbackForm.controls['email'].errors?.['emailError'] && feedbackForm.controls['email'].touched" class="alert alert-danger">
+            {{feedbackForm.controls['email'].errors?.['emailError'].message}}
+          </p>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="form-group">
+          <label><br />Please leave your feedback below</label>
+          <textarea rows="5" cols="1" class="form-control" formControlName="feedback" placeholder="Write your valuable feedback"></textarea>
+          <p *ngIf="feedbackForm.controls['feedback'].errors?.['minlength'] && feedbackForm.controls['feedback'].touched" class="alert alert-danger">This field is invalid, minimum 8 characters</p>
+          <p *ngIf="feedbackForm.controls['feedback'].errors?.['maxlength'] && feedbackForm.controls['feedback'].touched" class="alert alert-danger">This field is invalid, maximum 100 characters</p>
+          <p *ngIf="feedbackForm.controls['feedback'].errors?.['required'] && feedbackForm.controls['feedback'].touched" class="alert alert-danger">This field is required</p>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <p *ngIf="feedbackForm.invalid" style=" font-size:30px; color:red; font:bold">
+          {{msg}}
+        </p>
+        <p *ngIf="feedbackForm.valid && feedbackForm.controls['email'].touched && feedbackForm.controls['name'].touched" style=" font-size:30px; color:green; font:bold">
+          {{msg}}
+        </p>
+
+
+
+      </div>
+    </div>
+
+    <div class="row"><br /></div>
+
+    <button type="submit"> Submit</button>
+
+
+  </form>
+  <!--
+       <div style=" font-size:30px; font:bold">
+      {{msg}}
+    </div>
+
+  -->
+
+</div>

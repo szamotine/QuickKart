@@ -1,0 +1,53 @@
+<div *ngIf="customerLayout">
+  <app-customer-layout></app-customer-layout>
+</div>
+
+<div *ngIf="commonLayout">
+  <app-common-layout></app-common-layout>
+</div>
+
+<div class="myContent">
+  <div style="text-align:center;">
+    <h1>View Purchase Details</h1>
+    <br />
+    <br />
+
+    <div class="row">
+      <div class="col-md-4" style="text-align:right;">
+        <label>Search:</label>
+      </div>
+      <div class="col-md-4">
+        <input type="text" placeholder="Email ID" (input)="getPurchaseDetails(purchaseEmailId.value)" class="form-control" #purchaseEmailId />
+      </div>
+
+    </div>
+
+    <div class="table-responsive">
+      <table class="table" style=" border: 5px solid rgba(220, 230, 242,1);" *ngIf="filteredPurchases && filteredPurchases.length">
+        <tr>{{purchaseEmailId.value}} has purchased the following products:</tr>
+
+        <tr>
+          <th style="text-align: center;">Purchase ID</th>
+          <th style="text-align: center;">Product Name</th>
+          <th style="text-align: center;">Quantity Purchased</th>
+          <th style="text-align: center;">Date of Purchase</th>
+        </tr>
+
+        <tr *ngFor="let purchase of filteredPurchases" style="background-color:white;">
+          <td>{{purchase.purchaseId}}</td>
+          <td>{{purchase.productName}}</td>
+          <td>{{purchase.quantityPurchased}}</td>
+          <td>{{purchase.purchaseDate}}</td>
+
+        </tr>
+
+      </table>
+    </div>
+
+    <div *ngIf="showMsgDiv" style="">
+      <h4 class="jumbotron" style="text-align:center;">No Purchase Details Available</h4>
+    </div>
+
+
+  </div>
+</div>

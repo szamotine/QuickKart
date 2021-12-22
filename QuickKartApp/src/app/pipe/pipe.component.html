@@ -1,0 +1,38 @@
+<div *ngIf="customerLayout">
+  <app-customer-layout></app-customer-layout>
+</div>
+
+<div *ngIf="commonLayout">
+  <app-common-layout></app-common-layout>
+</div>
+
+<h3 style="text-align:center">Angular Pipes</h3>
+<br />
+<div class="row">
+  <div class="col-md-4"></div>
+
+  <div class="col-md-3" style="margin-left:55px; background-color:beige; text-align:left">
+    <label>Name: {{name}}</label>
+    <br />
+    <label>Name (uppercase): {{name | uppercase}}</label>
+    <label>Name (lowercase): {{name | lowercase}}</label>
+    <label>Name (sliced): {{name | slice: 1:4}}</label>
+    <label>Number (untouched): {{number}}</label>
+    <label>Number (piped): {{number | number:'2.2-3'}}</label>
+    <label>Number (piped): {{number | number:'2.2-2'}}</label>
+    <label>Number (USD currency): {{number | currency:'USD'}}</label>
+    <label>Number (EUR currency): {{number | currency:'EUR'}}</label>
+    <label>Number (GBP currency): {{number | currency:'GBP'}}</label>
+    <label>Number (INR currency): {{number | currency:'INR'}}</label>
+    <label>Number (USD currency name): {{number | currency:'USD': 'code'}}</label>
+    <label>Number (GBP currency name): {{number | currency:'GBP': 'code'}}</label>
+    <h4><label><br />Current Date: </label></h4>{{date}}<br />
+    <label><br /> Full Date:</label>{{date | date: 'fullDate'}}<br />
+    <label><br /> Short Date:</label>{{date | date: 'shortDate'}}<br />
+    <label><br /> Medium Time:</label>{{date | date: 'mediumTime'}}<br />
+    <label><br /> Short Time:</label>{{date | date: 'shortTime'}}<br />
+    <label>Name (customPipe: Initials): {{name | contractname}}</label>
+  </div>
+
+  <div class="col-md-4"></div>
+</div>
