@@ -10,6 +10,7 @@ import { throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
+  baseURL = "http://localhost:11990/api/product/";
 
   products: IProduct[] = [];
   categories: ICategory[] = [];
@@ -17,14 +18,17 @@ export class ProductService {
     }
 
   getProducts(): Observable<IProduct[]> {
-
-    let tempVar = this.http.get<IProduct[]>('https://infosysquickkartservices20211203141112.azurewebsites.net/api/Product/GetProducts').pipe(catchError(this.errorHandler));;
+    let tempURL = "getproducts";
+    /*    let tempVar = this.http.get<IProduct[]>('https://infosysquickkartservices20211203141112.azurewebsites.net/api/Product/GetProducts').pipe(catchError(this.errorHandler));;*/
+    let tempVar = this.http.get<IProduct[]>(this.baseURL + tempURL).pipe(catchError(this.errorHandler));;
     return tempVar;
   }
 
   getProductCategories(): Observable<ICategory[]> {
-
-    let tempVar = this.http.get<ICategory[]>('https://infosysquickkartservices20211203141112.azurewebsites.net/api/Category/GetCategories').pipe(catchError(this.errorHandler));;
+    let baseURL = "http://localhost:11990/api/Category/";
+    let tempURL = "GetCategories";
+    /*let tempVar = this.http.get<ICategory[]>('https://infosysquickkartservices20211203141112.azurewebsites.net/api/Category/GetCategories').pipe(catchError(this.errorHandler));;*/
+    let tempVar = this.http.get<ICategory[]>(baseURL + tempURL).pipe(catchError(this.errorHandler));;
     return tempVar;
   }
   errorHandler(error: HttpErrorResponse) {
@@ -33,6 +37,7 @@ export class ProductService {
   }
 
   getProducts1() {
+    //temporary function to test front page before DB was introduced
     this.products = [
       { "productId": "P101", "productName": "Lamborghini Gallardo Spyder", "categoryId": 1, "price": 18000000, "quantityAvailable": 10 },
       { "productId": "P102", "productName": "Ben Sherman Mens Necktie Silk Tie", "categoryId": 2, "price": 1847, "quantityAvailable": 20 },
@@ -45,6 +50,7 @@ export class ProductService {
   }
 
   getProductCategories1() {
+    //temporary function to test front page before DB was introduced
     this.categories = [
       { "categoryId": 1, "categoryName": "Motors" },
       { "categoryId": 2, "categoryName": "Fashion" },
